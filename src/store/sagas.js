@@ -22,7 +22,7 @@ export function* rotateCountriesAfterGeoSuccess(){
 
 export function * bootstrapSaga(){
   yield put(fetchGeo())
-  yield put(fetchEmployees('Poland'))
+  // yield put(fetchEmployees('Poland'))
 }
 
 ///////////////////////////////////
