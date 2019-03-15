@@ -1,9 +1,19 @@
 import React from 'react'
 
+// List - HOC
+
 // funkcyjny
-export const EmployeeList = ({ employees }) => (<div>
+export const EmployeeList = ({ employees: collection }) => (<div>
   <ol>
-    {employees.map((e) =>
-      <li key={e.id}>{e.firstName} {e.lastName}</li>)}
+    {collection.map((e) =>
+      <li key={e.id}>
+        <EmployeeItem employee={e} />
+      </li>)}
   </ol>
+</div>)
+
+// const _EmployeeList = List(EmployeeItem)
+
+export const EmployeeItem = ({ employee }) => (<div>
+  {employee.firstName} {employee.lastName}, {employee.salary}$$$
 </div>)
