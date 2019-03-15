@@ -1,12 +1,20 @@
 import * as GeoAPI from '../api/geo'
 import { getEmployees } from '../api/employees'
-import { fetchGeoRequest, fetchGeoSuccess, fetchGeoFailure, fetchEmployeesRequest, fetchEmployeesSuccess, fetchEmployeesFailure } from './actions';
+import { fetchGeoRequest, fetchGeoSuccess, fetchGeoFailure, fetchEmployeesRequest, fetchEmployeesSuccess, fetchEmployeesFailure, selectCountry } from './actions';
 
 export function fetchGeo(){
-  return function(dispatch){
+  return function(dispatch, getState){
+    // dispatch(akcja1())
+    // if (getState().value > 10) {
+    //   dispatch(akcja2())
+    // }
+
     dispatch(fetchGeoRequest())
     GeoAPI.getGeo()
-      .then(data => dispatch(fetchGeoSuccess(data)))
+      .then(data => {
+        dispatch(fetchGeoSuccess(data))
+        dispatch(rotateSelectedCountry(2))
+      })
       .catch(error => dispatch(fetchGeoFailure(error)))
   }
 }
@@ -17,5 +25,30 @@ export function fetchEmployees(country){
     getEmployees(country)
       .then(data => dispatch(fetchEmployeesSuccess(data)))
       .catch(error => dispatch(fetchEmployeesFailure(error)))
+  }
+}
+
+const getNext = (collection) => {
+  let idx = 0
+  return () => {
+    const result = collection[idx]
+    idx++
+    if (idx >= collection.length) { // OFF BY ONE
+      idx = 0
+    }
+    return result
+  }
+}
+
+export function rotateSelectedCountry(seconds){
+  return function(dispatch, getState){
+    const state = getState()
+    const countries = Object.values(state.countries.data)
+    const getNextCountry = getNext(countries)
+    
+    setInterval(() => {
+      dispatch(selectCountry(getNextCountry()))
+    }, seconds * 1000)
+
   }
 }

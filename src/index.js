@@ -6,12 +6,13 @@ import * as serviceWorker from './serviceWorker';
 
 import { getStore } from './store/store';
 import { selectCountry } from './store/actions';
-import { fetchGeo, fetchEmployees } from './store/thunks';
+import { fetchGeo, fetchEmployees, rotateSelectedCountry } from './store/thunks';
 
 const store = getStore();
-store.dispatch(selectCountry('Polskaaaa'))
+// store.dispatch(selectCountry('Polskaaaa'))
 store.dispatch(fetchGeo())
 store.dispatch(fetchEmployees('Poland'))
+// store.dispatch(rotateSelectedCountry(5))
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

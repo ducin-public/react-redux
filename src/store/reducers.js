@@ -1,4 +1,5 @@
 import * as actionTypes from './constants'
+import { combineReducers } from 'redux';
 
 const initialState = {
   countries: {
@@ -82,3 +83,11 @@ export const rootReducer = (state = initialState, action) => {
       return state
   }
 }
+
+// const food = rootReducer
+// const money = rootReducer
+
+// const _rootReducer = combineReducers({
+//   food,
+//   money
+// })
