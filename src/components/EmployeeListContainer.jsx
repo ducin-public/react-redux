@@ -4,7 +4,7 @@ import { EmployeeList } from './EmployeesList'
 
 // kabel do odczytu
 const mapStateToProps = (state) => ({
-  employees: state.employees.data ? state.employees.data : []
+  collection: state.employees.data ? state.employees.data : []
 })
 
 // kabel do zapisu

@@ -1,4 +1,4 @@
-import { select, put, take, takeEvery, takeLatest } from 'redux-saga/effects'
+import { select, put, takeLatest } from 'redux-saga/effects'
 
 import { FETCH_GEO_SUCCESS, SELECT_COUNTRY } from './constants';
 import { fetchGeo, fetchEmployees, rotateSelectedCountry } from './thunks';
@@ -35,8 +35,3 @@ function* fetchCountryDataSaga(){
 export function* fetchCountryDataAfterSelectedSaga(){
   yield takeLatest(SELECT_COUNTRY, fetchCountryDataSaga)
 }
-
-// const state = yield select() // getState
-// yield put(mojaAkcjaReduxowa()) // dispatch
-// const action = yield take('SELECT_COUNTRY')
-// jedziemyMalina()

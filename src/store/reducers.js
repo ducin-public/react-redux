@@ -1,5 +1,4 @@
 import * as actionTypes from './constants'
-import { combineReducers } from 'redux';
 
 const initialState = {
   countries: {
