@@ -4,7 +4,12 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 
-import { helloSaga, rotateCountriesAfterGeoSuccess } from './sagas'
+import {
+  helloSaga,
+  rotateCountriesAfterGeoSuccess,
+  bootstrapSaga,
+  fetchCountryDataAfterSelectedSaga
+} from './sagas'
 
 import { rootReducer } from './reducers'
 
@@ -20,6 +25,8 @@ export const getStore = () => {
 
   sagaMiddleware.run(helloSaga)
   sagaMiddleware.run(rotateCountriesAfterGeoSuccess)
+  sagaMiddleware.run(bootstrapSaga)
+  sagaMiddleware.run(fetchCountryDataAfterSelectedSaga)
 
   return store
 }

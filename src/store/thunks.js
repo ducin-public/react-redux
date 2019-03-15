@@ -38,7 +38,11 @@ export function rotateSelectedCountry(seconds){
     const countries = Object.values(state.countries.data)
     const getNextCountry = getNext(countries)
     
+    // initial
+    dispatch(selectCountry(getNextCountry()))
+
     setInterval(() => {
+      // after N seconds
       dispatch(selectCountry(getNextCountry()))
     }, seconds * 1000)
   }
