@@ -4,17 +4,9 @@ import { fetchGeoRequest, fetchGeoSuccess, fetchGeoFailure, fetchEmployeesReques
 
 export function fetchGeo(){
   return function(dispatch, getState){
-    // dispatch(akcja1())
-    // if (getState().value > 10) {
-    //   dispatch(akcja2())
-    // }
-
     dispatch(fetchGeoRequest())
     GeoAPI.getGeo()
-      .then(data => {
-        dispatch(fetchGeoSuccess(data))
-        dispatch(rotateSelectedCountry(2))
-      })
+      .then(data => dispatch(fetchGeoSuccess(data)))
       .catch(error => dispatch(fetchGeoFailure(error)))
   }
 }
@@ -49,6 +41,5 @@ export function rotateSelectedCountry(seconds){
     setInterval(() => {
       dispatch(selectCountry(getNextCountry()))
     }, seconds * 1000)
-
   }
 }
